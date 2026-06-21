@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="description" content="BarberBLinders — Plataforma SaaS de gestão para barbearias. Agendamento online, pagamentos Stripe, PWA." />
+    <meta name="theme-color" content="#050508" />
+    <title>BarberBLinders — SaaS para Barbearias | igor.dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #050508;
+        --bg-raised: #0c0c12;
+        --accent: #e8b931;
+        --accent-dim: #c49b1a;
+        --text: #e8e8ed;
+        --text-mid: #9090a8;
+        --text-dim: #5a5a70;
+        --line: #1e1e2a;
+        --line-strong: #2a2a3a;
+        --font-display: 'Sora', sans-serif;
+        --font-body: 'Manrope', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1rem 2rem;
+        background: rgba(5, 5, 8, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav a.logo { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--accent); text-decoration: none; }
+      nav .links { display: flex; gap: 1.5rem; }
+      nav .links a { color: var(--text-mid); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+      nav .links a:hover { color: var(--accent); }
+
+      /* ── HERO ── */
+      .hero {
+        padding: 8rem 2rem 4rem;
+        max-width: 900px; margin: 0 auto; text-align: center;
+      }
+      .hero .badge {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: rgba(232, 185, 49, 0.1);
+        border: 1px solid rgba(232, 185, 49, 0.25);
+        color: var(--accent);
+        padding: 0.375rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+      }
+      .hero .badge .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+      .hero h1 span { color: var(--accent); }
+      .hero .subtitle {
+        font-size: 1.125rem;
+        color: var(--text-mid);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+      .hero .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+      .btn-primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: var(--accent); color: var(--bg);
+        font-weight: 700; font-size: 0.9rem;
+        padding: 0.75rem 1.75rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: background 0.2s, transform 0.15s;
+      }
+      .btn-primary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+      .btn-secondary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: transparent;
+        border: 1px solid var(--line-strong);
+        color: var(--text);
+        font-weight: 600; font-size: 0.9rem;
+        padding: 0.75rem 1.75rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: border-color 0.2s, color 0.2s;
+      }
+      .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+      /* ── SCREENSHOT ── */
+      .screenshot-wrap {
+        max-width: 1000px; margin: 0 auto 4rem; padding: 0 2rem;
+      }
+      .screenshot-wrap img {
+        width: 100%; border-radius: 1rem;
+        border: 1px solid var(--line);
+        box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+      }
+
+      /* ── SECTIONS ── */
+      section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+      section .label {
+        font-size: 0.7rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.12em;
+        color: var(--accent); margin-bottom: 0.5rem;
+      }
+      section h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      section p { color: var(--text-mid); margin-bottom: 1rem; }
+
+      /* ── FEATURE GRID ── */
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .feature-card {
+        background: var(--bg-raised);
+        border: 1px solid var(--line);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        transition: border-color 0.2s, transform 0.15s;
+      }
+      .feature-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+      .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+      .feature-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+      .feature-card p { color: var(--text-mid); font-size: 0.875rem; margin: 0; }
+
+      /* ── STACK TAGS ── */
+      .stack-tags {
+        display: flex; flex-wrap: wrap; gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      .stack-tag {
+        background: rgba(232, 185, 49, 0.08);
+        border: 1px solid rgba(232, 185, 49, 0.15);
+        color: var(--accent);
+        padding: 0.375rem 0.875rem;
+        border-radius: 0.375rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      /* ── STATUS TABLE ── */
+      .status-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      .status-table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.9rem;
+      }
+      .status-table td:first-child {
+        color: var(--text-dim);
+        font-weight: 500;
+        width: 140px;
+      }
+      .status-table .live { color: #22c55e; font-weight: 600; }
+
+      /* ── DIVIDER ── */
+      .divider {
+        max-width: 900px; margin: 0 auto;
+        border: none; border-top: 1px solid var(--line);
+      }
+
+      /* ── BACK LINK ── */
+      .back-link {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        color: var(--text-dim);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .back-link:hover { color: var(--accent); }
+
+      /* ── FOOTER ── */
+      footer {
+        max-width: 900px; margin: 0 auto;
+        padding: 3rem 2rem;
+        display: flex; justify-content: space-between; align-items: center;
+        flex-wrap: wrap; gap: 1rem;
+        border-top: 1px solid var(--line);
+      }
+      footer .copy { color: var(--text-dim); font-size: 0.8rem; }
+      footer .social { display: flex; gap: 1rem; }
+      footer .social a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+      footer .social a:hover { color: var(--accent); }
+
+      @media (max-width: 640px) {
+        nav { padding: 0.75rem 1rem; }
+        .hero { padding: 6rem 1rem 3rem; }
+        section { padding: 2rem 1rem; }
+        .screenshot-wrap { padding: 0 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="/" class="logo">igor.dev</a>
+      <div class="links">
+        <a href="/#projetos">Projetos</a>
+        <a href="/#stack">Stack</a>
+        <a href="/#sobre">Sobre</a>
+        <a href="/#contato">Contato</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="badge"><span class="dot"></span> Em produção</div>
+      <h1>Barber<span>BLinders</span></h1>
+      <p class="subtitle">Plataforma SaaS completa de gestão para barbearias — do agendamento ao pagamento, tudo em um só lugar.</p>
+      <div class="cta-row">
+        <a href="https://barberblinders.com" target="_blank" rel="noopener" class="btn-primary">Acessar barberblinders.com →</a>
+        <a href="/" class="btn-secondary">← Voltar ao portfólio</a>
+      </div>
+    </header>
+
+    <!-- SCREENSHOT -->
+    <div class="screenshot-wrap">
+      <img src="/barberblinders-screenshot.jpg" alt="BarberBLinders — Painel de agendamento e gestão de barbearia" loading="lazy" />
+    </div>
+
+    <hr class="divider" />
+
+    <!-- OVERVIEW -->
+    <section>
+      <div class="label">Visão Geral</div>
+      <h2>O que é o BarberBLinders?</h2>
+      <p>Uma plataforma multi-tenant que permite donos de barbearias gerenciar agendamentos, equipe, clientes e pagamentos recorrentes — tudo de uma interface moderna, rápida e instalável como app no celular.</p>
+      <p>Com 3 planos de assinatura, trial gratuito e integração completa com Stripe (cartão + Pix), o BarberBLinders elimina a necessidade de planilhas, WhatsApp manual e sistemas legados.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- FEATURES -->
+    <section>
+      <div class="label">Funcionalidades</div>
+      <h2>O que a plataforma entrega</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">📅</div>
+          <h3>Agendamento 24/7</h3>
+          <p>Clientes agendam sozinhos via Google OAuth, sem precisar ligar ou mandar mensagem. Horários em tempo real.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">💳</div>
+          <h3>Pagamentos Stripe</h3>
+          <p>Cobrança recorrente via cartão de crédito e Pix. Checkout integrado, sem redirecionamento externo.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">👥</div>
+          <h3>Gestão de Equipe</h3>
+          <p>Multi-tenant com 3 planos de assinatura. Cada barbeiro com seu perfil, agenda e comissões.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">💬</div>
+          <h3>Chat em Tempo Real</h3>
+          <p>Comunicação direta entre barbeiro e cliente via WebSocket. Notificações push integradas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📱</div>
+          <h3>PWA Instalável</h3>
+          <p>Instala no celular como app nativo. Sem loja de apps, sem custo de publicação, sem complicação.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔐</div>
+          <h3>Multi-Tenant</h3>
+          <p>Isolamento total entre barbearias. Cada negócio com seus dados, configurações e assinatura independentes.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- STACK -->
+    <section>
+      <div class="label">Tecnologias</div>
+      <h2>Stack técnica</h2>
+      <p>Construído com tecnologias modernas e testadas em produção para garantir performance, segurança e escalabilidade.</p>
+      <div class="stack-tags">
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">PocketBase</span>
+        <span class="stack-tag">Stripe</span>
+        <span class="stack-tag">Tailwind CSS</span>
+        <span class="stack-tag">PWA</span>
+        <span class="stack-tag">Caddy</span>
+        <span class="stack-tag">Cloudflare</span>
+        <span class="stack-tag">WebSocket</span>
+        <span class="stack-tag">Google OAuth</span>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- STATUS -->
+    <section>
+      <div class="label">Status</div>
+      <h2>Detalhes do projeto</h2>
+      <table class="status-table">
+        <tr><td>Status</td><td class="live">● Em produção</td></tr>
+        <tr><td>Tipo</td><td>SaaS Multi-Tenant</td></tr>
+        <tr><td>Planos</td><td>3 assinaturas + trial gratuito</td></tr>
+        <tr><td>Pagamentos</td><td>Stripe (cartão + Pix)</td></tr>
+        <tr><td>Deploy</td><td>Caddy + Cloudflare</td></tr>
+        <tr><td>Acesso</td><td><a href="https://barberblinders.com" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">barberblinders.com →</a></td></tr>
+      </table>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span class="copy">© 2025 igor.dev — Full-Stack Developer</span>
+      <div class="social">
+        <a href="https://github.com/igorll-fs" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/igor_works" target="_blank" rel="noopener">Instagram</a>
+        <a href="/">Portfólio</a>
+      </div>
+    </footer>
+  </body>
+</html>

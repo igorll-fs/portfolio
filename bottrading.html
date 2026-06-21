@@ -5,9 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="no-referrer" />
-    <meta name="description" content="BarberBLinders — Plataforma SaaS de gestão para barbearias. Agendamento online, pagamentos Stripe, PWA." />
+    <meta name="description" content="BotTrading — Trading bot de criptomoedas com IA, dashboard React e integração com exchanges." />
     <meta name="theme-color" content="#050508" />
-    <title>BarberBLinders — SaaS para Barbearias | igor.dev</title>
+    <title>BotTrading — Crypto Trading Bot com IA | igor.dev</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -70,7 +70,7 @@
         letter-spacing: 0.05em;
         margin-bottom: 1.5rem;
       }
-      .hero .badge .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+      .hero .badge .dot { width: 6px; height: 6px; background: #f59e0b; border-radius: 50%; animation: pulse 2s infinite; }
       @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
       .hero h1 {
         font-family: var(--font-display);
@@ -186,7 +186,7 @@
         font-weight: 500;
         width: 140px;
       }
-      .status-table .live { color: #22c55e; font-weight: 600; }
+      .status-table .dev { color: #f59e0b; font-weight: 600; }
 
       /* ── DIVIDER ── */
       .divider {
@@ -240,28 +240,23 @@
 
     <!-- HERO -->
     <header class="hero">
-      <div class="badge"><span class="dot"></span> Em produção</div>
-      <h1>Barber<span>BLinders</span></h1>
-      <p class="subtitle">Plataforma SaaS completa de gestão para barbearias — do agendamento ao pagamento, tudo em um só lugar.</p>
+      <div class="badge"><span class="dot"></span> Em desenvolvimento</div>
+      <h1>Bot<span>Trading</span></h1>
+      <p class="subtitle">Trading bot de criptomoedas com detecção de regime de mercado por IA, dashboard React e integração com exchanges.</p>
       <div class="cta-row">
-        <a href="https://barberblinders.com" target="_blank" rel="noopener" class="btn-primary">Acessar barberblinders.com →</a>
+        <a href="https://bottrading.dev-works.uk" target="_blank" rel="noopener" class="btn-primary">Acessar bottrading.dev-works.uk →</a>
         <a href="/" class="btn-secondary">← Voltar ao portfólio</a>
       </div>
     </header>
-
-    <!-- SCREENSHOT -->
-    <div class="screenshot-wrap">
-      <img src="/barberblinders-screenshot.jpg" alt="BarberBLinders — Painel de agendamento e gestão de barbearia" loading="lazy" />
-    </div>
 
     <hr class="divider" />
 
     <!-- OVERVIEW -->
     <section>
       <div class="label">Visão Geral</div>
-      <h2>O que é o BarberBLinders?</h2>
-      <p>Uma plataforma multi-tenant que permite donos de barbearias gerenciar agendamentos, equipe, clientes e pagamentos recorrentes — tudo de uma interface moderna, rápida e instalável como app no celular.</p>
-      <p>Com 3 planos de assinatura, trial gratuito e integração completa com Stripe (cartão + Pix), o BarberBLinders elimina a necessidade de planilhas, WhatsApp manual e sistemas legados.</p>
+      <h2>O que é o BotTrading?</h2>
+      <p>Um sistema de trading automatizado para criptomoedas que utiliza inteligência artificial para detectar regimes de mercado e tomar decisões de compra e venda de forma autônoma.</p>
+      <p>O projeto conta com paper trading para simulação segura, análise pré-trade com IA e um dashboard React para monitoramento em tempo real. Atualmente em fase de desenvolvimento e testes.</p>
     </section>
 
     <hr class="divider" />
@@ -269,92 +264,57 @@
     <!-- FEATURES -->
     <section>
       <div class="label">Funcionalidades</div>
-      <h2>O que a plataforma entrega</h2>
+      <h2>O que o projeto entrega</h2>
       <div class="feature-grid">
         <div class="feature-card">
-          <div class="icon">📅</div>
-          <h3>Agendamento 24/7</h3>
-          <p>Clientes agendam sozinhos via Google OAuth, sem precisar ligar ou mandar mensagem. Horários em tempo real.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">💳</div>
-          <h3>Pagamentos Stripe</h3>
-          <p>Cobrança recorrente via cartão de crédito e Pix. Checkout integrado, sem redirecionamento externo.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">👥</div>
-          <h3>Gestão de Equipe</h3>
-          <p>Multi-tenant com 3 planos de assinatura. Cada barbeiro com seu perfil, agenda e comissões.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">💬</div>
-          <h3>Chat em Tempo Real</h3>
-          <p>Comunicação direta entre barbeiro e cliente via WebSocket. Notificações push integradas.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">📱</div>
-          <h3>PWA Instalável</h3>
-          <p>Instala no celular como app nativo. Sem loja de apps, sem custo de publicação, sem complicação.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">🔐</div>
-          <h3>Multi-Tenant</h3>
-          <p>Isolamento total entre barbearias. Cada negócio com seus dados, configurações e assinatura independentes.</p>
-        </div>
-        <div class="feature-card">
           <div class="icon">🤖</div>
-          <h3>Lizzie Stark — IA Assistente</h3>
-          <p>Assistente inteligente que agenda, lembra compromissos e analisa dados do negócio. Atendimento automatizado 24/7.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">🌐</div>
-          <h3>i18n PT/EN</h3>
-          <p>Plataforma completamente internacionalizada. Interface, e-mails e notificações em Português e Inglês.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">🚫</div>
-          <h3>Restrições para Faltosos</h3>
-          <p>Sistema automático que restringe agendamentos de clientes com histórico de faltas, protegendo a agenda dos barbeiros.</p>
+          <h3>Trading Bot</h3>
+          <p>Bot automatizado em Python que executa operações de compra e venda em exchanges de criptomoedas com estratégia configurável.</p>
         </div>
         <div class="feature-card">
           <div class="icon">📊</div>
-          <h3>Relatórios & Analytics</h3>
-          <p>Dashboard com métricas de agendamentos, receita, performance da equipe e comportamento dos clientes.</p>
+          <h3>Dashboard React</h3>
+          <p>Interface web construída em React para monitoramento de posições, performance e operações em tempo real.</p>
         </div>
         <div class="feature-card">
-          <div class="icon">📍</div>
-          <h3>Busca por Geolocalização</h3>
-          <p>Clientes encontram barbearias próximas automaticamente. Ordenação por distância em tempo real.</p>
+          <div class="icon">🧠</div>
+          <h3>Detecção de Regime</h3>
+          <p>Algoritmo de IA que identifica regimes de mercado (tendência, lateralização, volatilidade) para ajustar a estratégia automaticamente.</p>
         </div>
         <div class="feature-card">
-          <div class="icon">🔔</div>
-          <h3>Notificações Push</h3>
-          <p>Alertas instantâneos para agendamentos, confirmações, lembretes e mensagens. PWA com push nativo.</p>
+          <div class="icon">🔍</div>
+          <h3>Análise Pré-Trade</h3>
+          <p>Sistema de análise inteligente que avalia condições de mercado antes de executar cada operação, reduzindo falsos sinais.</p>
         </div>
         <div class="feature-card">
-          <div class="icon">🎁</div>
-          <h3>3 Planos + Trial 20 Dias</h3>
-         <p>Planos Básico, Profissional e Premium com 20 dias de teste gratuito. Sem cartão de crédito para começar.</p>
+          <div class="icon">📋</div>
+          <h3>Paper Trading</h3>
+          <p>Modo de simulação que permite testar estratégias com dados reais de mercado sem arriscar capital real.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔗</div>
+          <h3>Integração Kraken</h3>
+          <p>Conectado à API da Kraken para execução de ordens e obtenção de dados de mercado em tempo real.</p>
         </div>
       </div>
     </section>
+
     <hr class="divider" />
 
     <!-- STACK -->
     <section>
       <div class="label">Tecnologias</div>
       <h2>Stack técnica</h2>
-      <p>Construído com tecnologias modernas e testadas em produção para garantir performance, segurança e escalabilidade.</p>
+      <p>Construído com tecnologias robustas para processamento de dados financeiros, machine learning e interfaces modernas.</p>
       <div class="stack-tags">
+        <span class="stack-tag">Python</span>
         <span class="stack-tag">React</span>
-        <span class="stack-tag">PocketBase</span>
-        <span class="stack-tag">Stripe</span>
-        <span class="stack-tag">Tailwind CSS</span>
-        <span class="stack-tag">PWA</span>
-        <span class="stack-tag">Caddy</span>
-        <span class="stack-tag">Cloudflare</span>
+        <span class="stack-tag">Kraken API</span>
+        <span class="stack-tag">REST APIs</span>
+        <span class="stack-tag">Machine Learning</span>
         <span class="stack-tag">WebSocket</span>
-        <span class="stack-tag">Google OAuth</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">NumPy</span>
       </div>
     </section>
 
@@ -365,12 +325,12 @@
       <div class="label">Status</div>
       <h2>Detalhes do projeto</h2>
       <table class="status-table">
-        <tr><td>Status</td><td class="live">● Em produção</td></tr>
-        <tr><td>Tipo</td><td>SaaS Multi-Tenant</td></tr>
-        <tr><td>Planos</td><td>3 assinaturas + trial gratuito</td></tr>
-        <tr><td>Pagamentos</td><td>Stripe (cartão + Pix)</td></tr>
-        <tr><td>Deploy</td><td>Caddy + Cloudflare</td></tr>
-        <tr><td>Acesso</td><td><a href="https://barberblinders.com" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">barberblinders.com →</a></td></tr>
+        <tr><td>Status</td><td class="dev">● Em desenvolvimento</td></tr>
+        <tr><td>Tipo</td><td>Trading Bot + Dashboard</td></tr>
+        <tr><td>Exchange</td><td>Kraken</td></tr>
+        <tr><td>Modo</td><td>Paper Trading (simulação)</td></tr>
+        <tr><td>Bot</td><td>Offline (em desenvolvimento)</td></tr>
+        <tr><td>Dashboard</td><td><a href="https://bottrading.dev-works.uk" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">bottrading.dev-works.uk →</a></td></tr>
       </table>
     </section>
 

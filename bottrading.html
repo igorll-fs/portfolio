@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'" />
+    <meta name="robots" content="noarchive, nosnippet" />
+    <meta name="description" content="BotTrading — Trading bot de criptomoedas com IA, dashboard React e integração com exchanges." />
+    <meta name="theme-color" content="#050508" />
+    <title>BotTrading — Crypto Trading Bot com IA | igor.dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #050508;
+        --bg-raised: #0c0c12;
+        --accent: #e8b931;
+        --accent-dim: #c49b1a;
+        --text: #e8e8ed;
+        --text-mid: #9090a8;
+        --text-dim: #5a5a70;
+        --line: #1e1e2a;
+        --line-strong: #2a2a3a;
+        --font-display: 'Sora', sans-serif;
+        --font-body: 'Manrope', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1rem 2rem;
+        background: rgba(5, 5, 8, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav a.logo { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--accent); text-decoration: none; }
+      nav .links { display: flex; gap: 1.5rem; }
+      nav .links a { color: var(--text-mid); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+      nav .links a:hover { color: var(--accent); }
+
+      /* ── HERO ── */
+      .hero {
+        padding: 8rem 2rem 4rem;
+        max-width: 900px; margin: 0 auto; text-align: center;
+      }
+      .hero .badge {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: rgba(232, 185, 49, 0.1);
+        border: 1px solid rgba(232, 185, 49, 0.25);
+        color: var(--accent);
+        padding: 0.375rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+      }
+      .hero .badge .dot { width: 6px; height: 6px; background: #f59e0b; border-radius: 50%; animation: pulse 2s infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+      .hero h1 span { color: var(--accent); }
+      .hero .subtitle {
+        font-size: 1.125rem;
+        color: var(--text-mid);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+      .hero .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+      .btn-primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: var(--accent); color: var(--bg);
+        font-weight: 700; font-size: 0.9rem;
+        padding: 0.75rem 1.75rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: background 0.2s, transform 0.15s;
+      }
+      .btn-primary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+      .btn-secondary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: transparent;
+        border: 1px solid var(--line-strong);
+        color: var(--text);
+        font-weight: 600; font-size: 0.9rem;
+        padding: 0.75rem 1.75rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: border-color 0.2s, color 0.2s;
+      }
+      .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+      /* ── SCREENSHOT ── */
+      .screenshot-wrap {
+        max-width: 1000px; margin: 0 auto 4rem; padding: 0 2rem;
+      }
+      .screenshot-wrap img {
+        width: 100%; border-radius: 1rem;
+        border: 1px solid var(--line);
+        box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+      }
+
+      /* ── SECTIONS ── */
+      section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+      section .label {
+        font-size: 0.7rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.12em;
+        color: var(--accent); margin-bottom: 0.5rem;
+      }
+      section h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      section p { color: var(--text-mid); margin-bottom: 1rem; }
+
+      /* ── FEATURE GRID ── */
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .feature-card {
+        background: var(--bg-raised);
+        border: 1px solid var(--line);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        transition: border-color 0.2s, transform 0.15s;
+      }
+      .feature-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+      .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+      .feature-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+      .feature-card p { color: var(--text-mid); font-size: 0.875rem; margin: 0; }
+
+      /* ── STACK TAGS ── */
+      .stack-tags {
+        display: flex; flex-wrap: wrap; gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      .stack-tag {
+        background: rgba(232, 185, 49, 0.08);
+        border: 1px solid rgba(232, 185, 49, 0.15);
+        color: var(--accent);
+        padding: 0.375rem 0.875rem;
+        border-radius: 0.375rem;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      /* ── STATUS TABLE ── */
+      .status-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      .status-table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.9rem;
+      }
+      .status-table td:first-child {
+        color: var(--text-dim);
+        font-weight: 500;
+        width: 140px;
+      }
+      .status-table .dev { color: #f59e0b; font-weight: 600; }
+
+      /* ── DIVIDER ── */
+      .divider {
+        max-width: 900px; margin: 0 auto;
+        border: none; border-top: 1px solid var(--line);
+      }
+
+      /* ── BACK LINK ── */
+      .back-link {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        color: var(--text-dim);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .back-link:hover { color: var(--accent); }
+
+      /* ── FOOTER ── */
+      footer {
+        max-width: 900px; margin: 0 auto;
+        padding: 3rem 2rem;
+        display: flex; justify-content: space-between; align-items: center;
+        flex-wrap: wrap; gap: 1rem;
+        border-top: 1px solid var(--line);
+      }
+      footer .copy { color: var(--text-dim); font-size: 0.8rem; }
+      footer .social { display: flex; gap: 1rem; }
+      footer .social a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+      footer .social a:hover { color: var(--accent); }
+
+      @media (max-width: 640px) {
+        nav { padding: 0.75rem 1rem; }
+        .hero { padding: 6rem 1rem 3rem; }
+        section { padding: 2rem 1rem; }
+        .screenshot-wrap { padding: 0 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="/" class="logo">igor.dev</a>
+      <div class="links">
+        <a href="/#projetos">Projetos</a>
+        <a href="/#stack">Stack</a>
+        <a href="/#sobre">Sobre</a>
+        <a href="/#contato">Contato</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="badge"><span class="dot"></span> Em desenvolvimento</div>
+      <h1>Bot<span>Trading</span></h1>
+      <p class="subtitle">Trading bot de criptomoedas com detecção de regime de mercado por IA, dashboard React e integração com exchanges.</p>
+      <div class="cta-row">
+        <a href="https://bottrading.dev-works.uk" target="_blank" rel="noopener" class="btn-primary">Acessar bottrading.dev-works.uk →</a>
+        <a href="/" class="btn-secondary">← Voltar ao portfólio</a>
+      </div>
+    </header>
+
+    <hr class="divider" />
+
+    <!-- OVERVIEW -->
+    <section>
+      <div class="label">Visão Geral</div>
+      <h2>O que é o BotTrading?</h2>
+      <p>Um sistema de trading automatizado para criptomoedas que utiliza inteligência artificial para detectar regimes de mercado e tomar decisões de compra e venda de forma autônoma.</p>
+      <p>O projeto conta com paper trading para simulação segura, análise pré-trade com IA e um dashboard React para monitoramento em tempo real. Atualmente em fase de desenvolvimento e testes.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- FEATURES -->
+    <section>
+      <div class="label">Funcionalidades</div>
+      <h2>O que o projeto entrega</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">🤖</div>
+          <h3>Trading Bot</h3>
+          <p>Bot automatizado em Python que executa operações de compra e venda em exchanges de criptomoedas com estratégia configurável.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h3>Dashboard React</h3>
+          <p>Interface web construída em React para monitoramento de posições, performance e operações em tempo real.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🧠</div>
+          <h3>Detecção de Regime</h3>
+          <p>Algoritmo de IA que identifica regimes de mercado (tendência, lateralização, volatilidade) para ajustar a estratégia automaticamente.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔍</div>
+          <h3>Análise Pré-Trade</h3>
+          <p>Sistema de análise inteligente que avalia condições de mercado antes de executar cada operação, reduzindo falsos sinais.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📋</div>
+          <h3>Paper Trading</h3>
+          <p>Modo de simulação que permite testar estratégias com dados reais de mercado sem arriscar capital real.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔗</div>
+          <h3>Integração Kraken</h3>
+          <p>Conectado à API da Kraken para execução de ordens e obtenção de dados de mercado em tempo real.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- STACK -->
+    <section>
+      <div class="label">Tecnologias</div>
+      <h2>Stack técnica</h2>
+      <p>Construído com tecnologias robustas para processamento de dados financeiros, machine learning e interfaces modernas.</p>
+      <div class="stack-tags">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Kraken API</span>
+        <span class="stack-tag">REST APIs</span>
+        <span class="stack-tag">Machine Learning</span>
+        <span class="stack-tag">WebSocket</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">NumPy</span>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- STATUS -->
+    <section>
+      <div class="label">Status</div>
+      <h2>Detalhes do projeto</h2>
+      <table class="status-table">
+        <tr><td>Status</td><td class="dev">● Em desenvolvimento</td></tr>
+        <tr><td>Tipo</td><td>Trading Bot + Dashboard</td></tr>
+        <tr><td>Exchange</td><td>Kraken</td></tr>
+        <tr><td>Modo</td><td>Paper Trading (simulação)</td></tr>
+        <tr><td>Bot</td><td>Offline (em desenvolvimento)</td></tr>
+        <tr><td>Dashboard</td><td><a href="https://bottrading.dev-works.uk" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">bottrading.dev-works.uk →</a></td></tr>
+      </table>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span class="copy">© 2026 <a href="https://dev-works.uk" target="_blank" rel="noopener" style="color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px;">Desenvolvido por Igor Works</a> — Full-Stack Developer</span>
+      <div class="social">
+        <a href="https://github.com/igorll-fs" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/igor_works" target="_blank" rel="noopener">Instagram</a>
+        <a href="/">Portfólio</a>
+      </div>
+    </footer>
+  </body>
+</html>

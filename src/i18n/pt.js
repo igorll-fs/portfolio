@@ -350,9 +350,9 @@ const pt = {
 
   // ChatWidget UI
   chat: {
-    headerName: 'Assistente Igor.dev',
+    headerName: 'Assistente dev-work',
     headerStatus: 'Online',
-    welcome: 'Olá! Sou o assistente da igor.dev. Posso te ajudar com informações sobre nossos serviços, preços e prazos. O que você gostaria de saber?',
+    welcome: 'Olá! Sou o assistente da dev-work. Posso te ajudar com informações sobre nossos serviços, preços e prazos. O que você gostaria de saber?',
     placeholder: 'Digite sua pergunta...',
     limitReached: 'Limite atingido',
     inviteText: '👋 Precisa de ajuda? Clique aqui e tire suas dúvidas sobre nossos serviços!',

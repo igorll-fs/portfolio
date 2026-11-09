@@ -23,7 +23,7 @@ export default function Navbar() {
     <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <div className="nav__inner">
         <a href="#" className="nav__logo">
-          dev-work
+          dev-works
         </a>
         <div className="nav__right">
           <div className="nav__links">

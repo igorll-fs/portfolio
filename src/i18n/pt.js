@@ -173,7 +173,7 @@ const pt = {
 
   // Footer
   footer: {
-    copy: '© 2026 Igor Luiz',
+    copy: '© 2026 dev-works',
   },
 
   // ServiceModal

@@ -8,7 +8,7 @@ export default function AnalyticsDashboard({ onClose }) {
     <div style={{ minHeight: '100vh', background: '#07070a', color: '#e0e0e0', padding: '2rem', fontFamily: 'Manrope, sans-serif' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#e8b931' }}>📊 igor.dev Analytics</h1>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#e8b931' }}>📊 dev-work Analytics</h1>
           <button onClick={onClose} style={{ background: 'none', border: '1px solid #333', color: '#fff', padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <X size={16} /> Fechar
           </button>

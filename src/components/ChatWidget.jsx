@@ -8,17 +8,17 @@ const INVITE_DELAY = 4000
 
 // Service-specific prompts
 const servicePrompts = {
-  'Sites Profissionais': 'Quero saber mais sobre sites profissionais. Como funciona, quanto custa e como pode ajudar meu negócio?',
-  'Professional Websites': 'I want to know more about professional websites. How does it work, how much does it cost and how can it help my business?',
-  'Automação': 'Quero saber mais sobre automação. Como funciona, quanto custa e como pode ajudar meu negócio?',
-  'Automation': 'I want to know more about automation. How does it work, how much does it cost and how can it help my business?',
-  'Chatbots': 'Quero saber mais sobre chatbots. Como funciona, quanto custa e como pode ajudar meu negócio?',
-  'Painéis & Relatórios': 'Quero saber mais sobre dashboards e painéis. Como funciona, quanto custa e como pode ajudar meu negócio?',
-  'Dashboards & Reports': 'I want to know more about dashboards and reports. How does it work, how much does it cost and how can it help my business?',
-  'BarberBLinders': 'Me conta sobre o BarberBLinders. Como foi construído e quanto custaria algo similar?',
-  'SaaS & Plataformas': 'Quero saber mais sobre SaaS e plataformas. Como funciona, quanto custa e como pode ajudar meu negócio?',
-  'SaaS & Platforms': 'I want to know more about SaaS and platforms. How does it work, how much does it cost and how can it help my business?',
-  'PWA & Apps': 'Quero saber mais sobre PWA e apps. Como funciona, quanto custa e como pode ajudar meu negócio?',
+  'Sites Profissionais': 'Quero saber mais sobre sites profissionais. Como funciona e como pode ajudar meu negócio?',
+  'Professional Websites': 'I want to know more about professional websites. How does it work and how can it help my business?',
+  'Automação': 'Quero saber mais sobre automação. Como funciona e como pode ajudar meu negócio?',
+  'Automation': 'I want to know more about automation. How does it work and how can it help my business?',
+  'Chatbots': { pt: 'Como um chatbot ajuda no atendimento ao cliente?', en: 'How can a chatbot help with customer support?' },
+  'Painéis & Relatórios': 'Quero saber mais sobre dashboards e painéis. Como funciona e como pode ajudar meu negócio?',
+  'Dashboards & Reports': 'I want to know more about dashboards and reports. How does it work and how can it help my business?',
+  'BarberBLinders': 'Me conta sobre o BarberBLinders. Como foi construído e o que posso aproveitar em um projeto parecido?',
+  'SaaS & Plataformas': 'Quero saber mais sobre SaaS e plataformas. Como funciona e como pode ajudar meu negócio?',
+  'SaaS & Platforms': 'I want to know more about SaaS and platforms. How does it work and how can it help my business?',
+  'PWA & Apps': { pt: 'Como um app PWA funciona no celular?', en: 'How does a PWA work on a phone?' },
   'Tecnologia': '',
 }
 
@@ -42,7 +42,7 @@ const ALLOWED_TOPICS = [
   'ajud', 'ajuda', 'help', 'duvida', 'dúvida', 'como funciona',
   'service', 'services', 'automation', 'chatbot', 'dashboard', 'price', 'cost',
   'timeline', 'deadline', 'technology', 'contact', 'about', 'project',
-  'website', 'professional', 'report', 'platform', 'mobile', 'app',
+  'website', 'professional', 'report', 'platform', 'mobile', 'app', 'quote', 'pricing',
 ]
 
 function isOnTopic(input) {
@@ -54,42 +54,42 @@ function isOnTopic(input) {
 const knowledge = {
   greeting: [
     'Olá! Sou o assistente da dev-work. Posso te ajudar com informações sobre nossos serviços: sites profissionais, automação de processos, chatbots inteligentes e dashboards. O que você gostaria de saber?',
-    'Oi! Bem-vindo à dev-work. Trabalho com desenvolvimento de software sob medida. Pergunte sobre serviços, preços, prazos ou como posso resolver o problema do seu negócio.',
+    'Oi! Bem-vindo à dev-work. Trabalho com desenvolvimento de software sob medida. Pergunte sobre serviços, etapas do projeto ou como posso resolver o problema do seu negócio.',
   ],
   greetingEn: [
     'Hi! I\'m the dev-work assistant. I can help you with information about our services: professional websites, process automation, smart chatbots and dashboards. What would you like to know?',
-    'Hello! Welcome to dev-work. I work with custom software development. Ask about services, pricing, timelines or how I can solve your business problem.',
+    'Hello! Welcome to dev-work. I work with custom software development. Ask about services and project timelines or how I can solve your business problem.',
   ],
   services: {
     'sites': {
-      answer: 'Sites profissionais que convertem visitantes em clientes. React com animações fluidas, design responsivo (celular e desktop), otimização pro Google (SEO) e carregamento rápido. Não é página bonita parada — é ferramenta de vendas.\n\n💰 Investimento (varia por complexidade):\n• Landing page: a partir de R$ 800\n• Site institucional (3-5 páginas): R$ 1.500 a R$ 3.500\n• E-commerce / sistema completo: R$ 3.000 a R$ 8.000+\n\nCada projeto é único. Me conta o que precisa e monto uma proposta personalizada.',
-      answerEn: 'Professional websites that convert visitors into customers. React with smooth animations, responsive design (mobile and desktop), Google optimization (SEO) and fast loading. Not a pretty static page — it\'s a sales tool.\n\n💰 Investment (varies by complexity):\n• Landing page: from R$ 800\n• Institutional site (3-5 pages): R$ 1,500 to R$ 3,500\n• E-commerce / complete system: R$ 3,000 to R$ 8,000+\n\nEach project is unique. Tell me what you need and I\'ll put together a personalized proposal.',
-      follow: 'Quer ver exemplos ou saber mais sobre algum outro serviço?',
-      followEn: 'Want to see examples or know more about another service?',
+      answer: 'Uma landing page ajuda a divulgar uma oferta e receber contatos pelo WhatsApp ou por formulário. Um site institucional apresenta sua empresa, seus serviços e seus projetos. Se você vende online, podemos organizar catálogo e checkout. O site se adapta ao celular e recebe otimizações de carregamento e busca.',
+      answerEn: 'A landing page promotes an offer and captures inquiries through WhatsApp or a form. A business website introduces your company, services and work. If you sell online, we can set up a catalog and checkout. The site is designed for mobile, fast loading and search visibility.',
+      follow: 'O que você quer que o visitante faça ao chegar ao site?',
+      followEn: 'What would you like visitors to do when they land on the site?',
     },
     'automação': {
-      answer: 'Automação conecta seus sistemas e elimina trabalho manual. Exemplo: loja que cadastrava pedidos à mão gastava 3h/dia. Automatizamos WhatsApp → estoque → nota fiscal → envio. Zero erros, processamento em segundos, equipe livre pra vender.\n\n💰 Investimento (varia por complexidade):\n• 1 integração simples (planilha, email): a partir de R$ 1.000\n• 2-3 integrações (CRM, ERP, WhatsApp): R$ 2.000 a R$ 4.000\n• Múltiplos sistemas + IA: R$ 4.000 a R$ 8.000+\n\nFunciona com APIs e webhooks — quando algo acontece em um sistema, o outro reage automaticamente.',
-      answerEn: 'Automation connects your systems and eliminates manual work. Example: a store that entered orders by hand spent 3h/day. We automated WhatsApp → inventory → invoice → shipping. Zero errors, processing in seconds, team free to sell.\n\n💰 Investment (varies by complexity):\n• 1 simple integration (spreadsheet, email): from R$ 1,000\n• 2-3 integrations (CRM, ERP, WhatsApp): R$ 2,000 to R$ 4,000\n• Multiple systems + AI: R$ 4,000 to R$ 8,000+\n\nWorks with APIs and webhooks — when something happens in one system, the other reacts automatically.',
-      follow: 'Quer saber como funcionaria no seu caso específico?',
-      followEn: 'Want to know how it would work for your specific case?',
+      answer: 'A automação conecta ferramentas como WhatsApp, planilhas, CRM e ERP. Quando chega um pedido, por exemplo, o fluxo pode registrar os dados, atualizar o estoque e avisar a equipe. Assim, a equipe deixa de copiar as mesmas informações de um sistema para outro.',
+      answerEn: 'Automation connects tools like WhatsApp, spreadsheets, CRMs and ERPs. When an order comes in, the workflow can record it, update inventory and notify the team. Your staff spend less time copying the same information between tools.',
+      follow: 'Qual tarefa se repete mais na sua rotina?',
+      followEn: 'Which task does your team repeat most often?',
     },
     'chatbot': {
-      answer: 'Chatbots para WhatsApp, Instagram e sites. Atendimento 24/7 — nunca dorme, nunca perde cliente. IA entende perguntas mesmo com erros de digitação. Integra com CRM, agendamento e pagamento.\n\n💰 Investimento (varia por complexidade):\n• Menu com respostas pré-definidas: a partir de R$ 1.200\n• Com IA (entende perguntas livres): R$ 2.500 a R$ 4.000\n• IA + CRM + pagamentos integrados: R$ 4.000 a R$ 8.000+\n\nResultado real: e-commerce aumentou conversão em 35% — clientes tiram dúvidas e compram em minutos, não em dias.',
-      answerEn: 'Chatbots for WhatsApp, Instagram and websites. 24/7 support — never sleeps, never loses a customer. AI understands questions even with typos. Integrates with CRM, scheduling and payments.\n\n💰 Investment (varies by complexity):\n• Menu with pre-defined responses: from R$ 1,200\n• With AI (understands free questions): R$ 2,500 to R$ 4,000\n• AI + CRM + integrated payments: R$ 4,000 to R$ 8,000+\n\nReal result: e-commerce increased conversion by 35% — customers get answers and buy in minutes, not days.',
-      follow: 'Quer implementar no seu negócio?',
-      followEn: 'Want to implement it in your business?',
+      answer: 'Um chatbot pode responder dúvidas frequentes, registrar pedidos de agendamento e encaminhar conversas para sua equipe pelo WhatsApp, Instagram ou site. Com IA, ele entende perguntas escritas de formas diferentes e pode consultar as informações da sua empresa para responder.',
+      answerEn: 'A chatbot can answer common questions, capture booking requests and hand conversations to your team on WhatsApp, Instagram or your website. With AI, it can understand differently worded questions and answer using your business information.',
+      follow: 'Em qual canal você recebe mais perguntas hoje?',
+      followEn: 'Which channel gets the most customer questions today?',
     },
     'dashboard': {
-      answer: 'Dashboards que transformam dados brutos em decisões que geram lucro. Gráficos interativos, filtros por período, dados em tempo real, exportação em PDF.\n\n💰 Investimento (varia por complexidade):\n• Gráficos simples + filtros básicos: a partir de R$ 1.000\n• Filtros avançados + exportação + múltiplas fontes: R$ 2.000 a R$ 4.000\n• Tempo real + alertas automáticos + IA: R$ 4.000 a R$ 8.000+\n\nStartup de delivery usou o dashboard e descobriu que 3 produtos representavam 80% do estoque parado. Liquidaram e recuperaram R$ 15 mil em 2 semanas.',
-      answerEn: 'Dashboards that transform raw data into profit-generating decisions. Interactive charts, period filters, real-time data, PDF export.\n\n💰 Investment (varies by complexity):\n• Simple charts + basic filters: from R$ 1,000\n• Advanced filters + export + multiple sources: R$ 2,000 to R$ 4,000\n• Real-time + automatic alerts + AI: R$ 4,000 to R$ 8,000+\n\nA delivery startup used the dashboard and discovered 3 products represented 80% of dead stock. They liquidated and recovered R$ 15k in 2 weeks.',
-      follow: 'Posso mostrar como ficaria para o seu negócio?',
-      followEn: 'I can show you how it would look for your business. Want to see?',
+      answer: 'Um dashboard reúne dados de planilhas e sistemas em um painel com gráficos e filtros. Você pode acompanhar vendas por período, identificar produtos parados no estoque e compartilhar relatórios com a equipe. Se a fonte permitir, o painel pode atualizar os dados automaticamente e emitir alertas.',
+      answerEn: 'A dashboard brings data from spreadsheets and business systems together in one place. You can track sales over time, spot slow-moving inventory and share reports with your team. Where the data source supports it, the dashboard can update automatically and send alerts.',
+      follow: 'Quais indicadores sua equipe precisa acompanhar?',
+      followEn: 'Which metrics does your team need to track?',
     },
     'preço': {
-      answer: 'Cada projeto tem valor diferente porque a complexidade varia:\n\n🌐 Sites: R$ 800 a R$ 8.000+\n⚙️ Automação: R$ 1.000 a R$ 8.000+\n🤖 Chatbots: R$ 1.200 a R$ 8.000+\n📊 Dashboards: R$ 1.000 a R$ 8.000+\n\nO valor depende de: número de integrações, complexidade das funcionalidades, se precisa de IA, e prazo. Me conta o que precisa e monto uma proposta personalizada sem compromisso.',
-      answerEn: 'Each project has a different price because complexity varies:\n\n🌐 Websites: R$ 800 to R$ 8,000+\n⚙️ Automation: R$ 1,000 to R$ 8,000+\n🤖 Chatbots: R$ 1,200 to R$ 8,000+\n📊 Dashboards: R$ 1,000 to R$ 8,000+\n\nThe price depends on: number of integrations, feature complexity, whether AI is needed, and timeline. Tell me what you need and I\'ll put together a personalized proposal with no obligation.',
-      follow: 'Quer um orçamento personalizado?',
-      followEn: 'Want a personalized quote?',
+      answer: 'O Igor prepara um orçamento personalizado com base no que você precisa, nas ferramentas que já usa e no prazo do projeto.',
+      answerEn: 'Igor prepares a custom quote based on what you need, the tools you already use and your timeline.',
+      follow: 'Qual serviço você tem em mente?',
+      followEn: 'Which service are you interested in?',
     },
     'prazo': {
       answer: 'Prazos realistas, sem enrolação:\n\n🌐 Landing pages: 1-2 semanas\n🌐 Sites institucionais: 2-4 semanas\n🌐 Sistemas completos: 4-8 semanas\n⚙️ Automações simples: 1-2 semanas\n⚙️ Automações complexas: 3-6 semanas\n🤖 Chatbots: 2-4 semanas\n📊 Dashboards: 2-4 semanas\n\nO prazo exato depende da complexidade e da agilidade no feedback. Projeto grande? Entregamos em fases.',
@@ -141,12 +141,12 @@ const knowledge = {
     },
   },
   default: [
-    'Não entendi sua pergunta. Posso te ajudar com: sites profissionais, automação de processos, chatbots inteligentes, dashboards, preços ou prazos. O que você gostaria de saber?',
-    'Hmm, não tenho certeza do que você quer saber. Pergunte sobre nossos serviços, preços, como funciona algum processo, ou como posso ajudar no seu negócio.',
+    'Não entendi sua pergunta. Posso te ajudar com: sites profissionais, automação de processos, chatbots inteligentes, dashboards, SaaS ou aplicativos. O que você gostaria de saber?',
+    'Hmm, não tenho certeza do que você quer saber. Pergunte sobre nossos serviços, como funciona algum processo, ou como posso ajudar no seu negócio.',
   ],
   defaultEn: [
-    'I didn\'t understand your question. I can help with: professional websites, process automation, smart chatbots, dashboards, pricing or timelines. What would you like to know?',
-    'Hmm, I\'m not sure what you want to know. Ask about our services, pricing, how a process works, or how I can help your business.',
+    'I didn\'t understand your question. I can help with: professional websites, process automation, smart chatbots, dashboards, SaaS or apps. What would you like to know?',
+    'Hmm, I\'m not sure what you want to know. Ask about our services, how a process works, or how I can help your business.',
   ],
 }
 
@@ -155,7 +155,7 @@ function getLocalResponse(input, lang) {
   const isEn = lang === 'en'
 
   // Greetings
-  if (lower.match(/^(oi|ola|hey|hello|bom dia|boa tarde|boa noite|hi|hey)/)) {
+  if (lower.match(/^(oi|ola|hey|hello|bom dia|boa tarde|boa noite|hi)\b/)) {
     const pool = isEn ? knowledge.greetingEn : knowledge.greeting
     return { text: pool[Math.floor(Math.random() * pool.length)], follow: null }
   }
@@ -165,19 +165,14 @@ function getLocalResponse(input, lang) {
     return { text: isEn ? 'You\'re welcome! If you need anything else, just ask.' : 'De nada! Se precisar de mais alguma coisa, é só perguntar.', follow: null }
   }
 
-  // General services question
-  if (lower.match(/servico|oferecem|oferece|fazem|faz|trabalha|trabalho|fazer|sobre|empresa|negocio|service/)) {
-    return {
-      text: isEn
-        ? 'I work with 4 types of services:\n\n🌐 Professional Websites — Landing pages from R$ 800, complete sites R$ 3,000 to R$ 8,000+. Modern, responsive design, optimized for Google.\n\n⚙️ Process Automation — I eliminate manual work. Connect WhatsApp, spreadsheets, ERPs. From R$ 1,000.\n\n🤖 Smart Chatbots — 24/7 AI support. WhatsApp, Instagram, website. From R$ 1,200.\n\n📊 Dashboards & Reports — Real-time data for decision making. From R$ 1,000.\n\nEach project is priced by complexity. Which interests you?'
-        : 'Trabalho com 4 tipos de serviços:\n\n🌐 Sites Profissionais — Landing pages a partir de R$ 800, sites completos R$ 3.000 a R$ 8.000+. Design moderno, responsivo, otimizado pro Google.\n\n⚙️ Automação de Processos — Elimino trabalho manual. Conecto WhatsApp, planilhas, ERPs. A partir de R$ 1.000.\n\n🤖 Chatbots Inteligentes — Atendimento 24/7 com IA. WhatsApp, Instagram, site. A partir de R$ 1.200.\n\n📊 Dashboards e Relatórios — Dados em tempo real pra tomar decisões. A partir de R$ 1.000.\n\nCada projeto é orçado pela complexidade. Qual te interessa?',
-      follow: null,
-      offerContact: false,
-    }
+  // Direct requests for a quote
+  if (lower.match(/\b(quanto custa|valor|precos?|cust[ao]|orcamentos?|prices?|pricing|cost|quote)\b/)) {
+    const d = knowledge.services['preço']
+    return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: true }
   }
 
   // Specific service keywords
-  if (lower.match(/site|sites|landing|pagina|web|loja virtual|website/)) {
+  if (lower.match(/site|landing|pagina|loja virtual|e-commerce/)) {
     const d = knowledge.services['sites']
     return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false }
   }
@@ -185,18 +180,12 @@ function getLocalResponse(input, lang) {
     const d = knowledge.services['automação']
     return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false }
   }
-  if (lower.match(/chatbot|bot|whatsapp|wpp|zap|atendimento|resposta automatica/)) {
+  if (lower.match(/chatbot|\bbot\b|whatsapp|wpp|zap|atendimento|resposta automatica/)) {
     const d = knowledge.services['chatbot']
     return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false }
   }
   if (lower.match(/dashboard|painel|relat|metrica|grafico|dados|indicador|report/)) {
     const d = knowledge.services['dashboard']
-    return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false }
-  }
-
-  // Price questions
-  if (lower.match(/quanto|valor|preco|custa|orcamento|price|cost/)) {
-    const d = knowledge.services['preço']
     return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false }
   }
 
@@ -212,9 +201,6 @@ function getLocalResponse(input, lang) {
   if (lower.match(/node|nodejs/)) { const d = knowledge.services['node']; return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false } }
   if (lower.match(/tecnolog|stack|ferramenta|technology/)) { const d = knowledge.services['tecnologia']; return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false } }
 
-  // Igor/portfolio
-  if (lower.match(/igor|portfolio|projeto|trading|quem|who/)) { const d = knowledge.services['igor']; return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false } }
-
   // BarberBLinders
   if (lower.match(/barberblinders|barber/)) return {
     text: isEn
@@ -227,20 +213,23 @@ function getLocalResponse(input, lang) {
   // SaaS & Plataformas
   if (lower.match(/saas|plataforma|sistema multi|assinatura recorrente|multi.?tenant|platform/)) return {
     text: isEn
-      ? 'I build complete SaaS platforms — from zero to production deployment.\n\nWhat\'s included:\n• Multi-tenant (isolated data per customer)\n• Authentication and access control\n• Recurring payments (Stripe)\n• Admin panel by role\n• Deploy with SSL and monitoring\n\nReal reference: BarberBLinders — multi-tenant SaaS with 3 plans, scheduling, chat and PWA.\n\nHow much? Depends on complexity — MVP from R$ 3,000, complete R$ 12,000+.'
-      : 'Construo plataformas SaaS completas — do zero ao deploy em produção.\n\nO que entra:\n• Multi-tenant (dados isolados por cliente)\n• Autenticação e controle de acesso\n• Pagamentos recorrentes (Stripe)\n• Painel admin por role\n• Deploy com SSL e monitoramento\n\nReferência real: BarberBLinders — SaaS multi-tenant com 3 planos, agendamento, chat e PWA.\n\nQuanto custa? Depende da complexidade — MVP a partir de R$ 3.000, completo R$ 12.000+.',
+      ? 'A SaaS platform gives customers their own accounts and lets you manage access, subscriptions and payments in one place. We can start with the main workflow and add features as usage grows. BarberBLinders is an example that combines bookings, recurring billing and a team dashboard.'
+      : 'Uma plataforma SaaS dá a cada cliente a própria conta e permite gerenciar acessos, assinaturas e pagamentos em um só lugar. Podemos começar pelo fluxo principal e evoluir os recursos conforme o uso. O BarberBLinders, por exemplo, reúne agendamento, cobrança recorrente e painel para a equipe.',
     follow: isEn ? 'Want to describe your idea?' : 'Quer descrever sua ideia?',
     offerContact: false,
   }
 
   // PWA & Apps
-  if (lower.match(/pwa|app.?mobile|app.?celular|progressive|instalar.*celular|app.*instalar/)) return {
+  if (lower.match(/pwa|aplicativo|\bapps?\b|progressive/)) return {
     text: isEn
-      ? 'PWA (Progressive Web App) is an app that installs directly on the phone — no App Store, no Play Store.\n\nAdvantages:\n• Installs from browser (home screen icon)\n• Works offline\n• Auto-updates\n• 70% cheaper than native app\n• One version works on iOS and Android\n\nReference: BarberBLinders is a PWA — customers installed it on their phones and receive notifications.\n\nBasic PWA from R$ 1,500, complete R$ 4,000+.'
-      : 'PWA (Progressive Web App) é um app que instala direto do celular — sem App Store, sem Play Store.\n\nVantagens:\n• Instala pelo navegador (ícone na tela inicial)\n• Funciona offline\n• Atualiza automático\n• Custo 70% menor que app nativo\n• Uma versão funciona em iOS e Android\n\nReferência: BarberBLinders é PWA — clientes instalaram no celular e recebem notificações.\n\nPWA básico a partir de R$ 1.500, completo R$ 4.000+.',
+      ? 'A progressive web app (PWA) opens in the browser and can be added to the home screen on compatible devices. It can keep selected features available offline and send notifications where supported. For example, customers can add BarberBLinders to their home screen for quick access to booking.'
+      : 'Um aplicativo web progressivo (PWA) abre no navegador e pode ser adicionado à tela inicial em dispositivos compatíveis. Ele também pode disponibilizar alguns recursos offline e enviar notificações quando houver suporte. No BarberBLinders, por exemplo, o cliente pode adicionar o app à tela inicial para acessar o agendamento rapidamente.',
     follow: isEn ? 'Want to know if PWA makes sense for your project?' : 'Quer saber se PWA faz sentido pro seu projeto?',
     offerContact: false,
   }
+
+  // Igor/portfolio
+  if (lower.match(/portfolio|trading|quem.*igor|who.*igor/)) { const d = knowledge.services['igor']; return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: false } }
 
   // Difference
   if (lower.match(/diferenca|qual a diferenca|comparar|difference|compare/)) {
@@ -258,11 +247,11 @@ function getLocalResponse(input, lang) {
     return { text: isEn ? d.answerEn : d.answer, follow: isEn ? d.followEn : d.follow, offerContact: true }
   }
 
-  // Help
-  if (lower.match(/ajud|help|como|duvida|how/)) return {
+  // Service overview
+  if (lower.match(/servico|oferece|fazem|trabalha|trabalho|empresa|negocio|service|ajud|help|duvida/)) return {
     text: isEn
-      ? 'I can help with:\n• 🌐 Professional websites (R$ 800 to R$ 8,000+)\n• ⚙️ Process automation (R$ 1,000 to R$ 8,000+)\n• 🤖 AI chatbots (R$ 1,200 to R$ 8,000+)\n• 📊 Real-time dashboards (R$ 1,000 to R$ 8,000+)\n• 🏗️ SaaS & Platforms (R$ 3,000 to R$ 12,000+)\n• 📱 PWA & Apps (R$ 1,500 to R$ 4,000+)\n• Pricing and timelines\n\nEach project is priced by complexity. What would you like to know?'
-      : 'Posso te ajudar com:\n• 🌐 Sites profissionais (R$ 800 a R$ 8.000+)\n• ⚙️ Automação de processos (R$ 1.000 a R$ 8.000+)\n• 🤖 Chatbots com IA (R$ 1.200 a R$ 8.000+)\n• 📊 Dashboards em tempo real (R$ 1.000 a R$ 8.000+)\n• 🏗️ SaaS & Plataformas (R$ 3.000 a R$ 12.000+)\n• 📱 PWA & Apps (R$ 1.500 a R$ 4.000+)\n• Prazos e orçamentos\n\nCada projeto é orçado pela complexidade. O que você gostaria de saber?',
+      ? 'Igor builds professional websites to showcase your business, automations to connect your tools, chatbots for customer support, dashboards to track your metrics, SaaS platforms with accounts and subscriptions, and web apps that customers can install. What would you like to build or improve?'
+      : 'O Igor desenvolve sites profissionais para apresentar sua empresa, automações para conectar suas ferramentas, chatbots para atender clientes, dashboards para acompanhar indicadores, plataformas SaaS com contas e assinaturas e aplicativos web instaláveis. O que você quer criar ou melhorar?',
     follow: null,
     offerContact: false,
   }
@@ -280,7 +269,11 @@ async function getAIResponse(input, lang) {
     })
     if (!res.ok) throw new Error('API error')
     const data = await res.json()
-    return { text: data.message, follow: null, offerContact: false }
+    const reply = data.message ?? data.reply
+    if (typeof reply !== 'string' || !reply.trim() || /(?:[$€£]|\b(?:BRL|USD|EUR|reais|d[oó]lares|dollars)\b)/i.test(reply)) {
+      return getLocalResponse(input, lang)
+    }
+    return { text: reply, follow: null, offerContact: false }
   } catch {
     return getLocalResponse(input, lang)
   }
@@ -305,7 +298,8 @@ export default function ChatWidget() {
   useEffect(() => {
     const handleServiceClick = (e) => {
       const { service } = e.detail
-      const prompt = servicePrompts[service]
+      const servicePrompt = servicePrompts[service]
+      const prompt = typeof servicePrompt === 'string' ? servicePrompt : servicePrompt?.[lang]
       if (service === 'Tecnologia' && e.detail.tech) {
         const techPrompt = lang === 'en'
           ? `Explain how ${e.detail.tech} technology works and how it can transform and boost a business. Give practical examples of results.`

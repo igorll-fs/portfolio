@@ -133,7 +133,7 @@ const en = {
   // About
   sobre: {
     label: 'About',
-    title: 'Who is Igor',
+    title: 'Who is Igor?',
     p1: 'Full-Stack Developer. I build complete systems from database to production deployment. Featured projects: BarberBLinders — complete SaaS for barbershops, completed and in production; and TradingBot — trading bot with adaptive AI.',
     p2strong: 'BarberBLinders',
     p2: ' — SaaS platform for barbershops with online scheduling, Stripe payments (card + Pix), real-time chat and installable PWA. Multi-tenant with 3 subscription plans, deployed on a dedicated VPS. Completed and in production.',
@@ -352,19 +352,19 @@ const en = {
   chat: {
     headerName: 'dev-work Assistant',
     headerStatus: 'Online',
-    welcome: 'Hi! I\'m the dev-work assistant. I can help you with information about our services, pricing and timelines. What would you like to know?',
+    welcome: 'Hi! I\'m the dev-work assistant. I can help you by explaining how our services can support your project. What would you like to know?',
     placeholder: 'Type your question...',
     limitReached: 'Limit reached',
     inviteText: '👋 Need help? Click here to ask about our services!',
     inviteBtn: 'Chat now',
     quickQuestions: [
       'I want a professional website',
-      'How much does a chatbot cost?',
+      'How can a chatbot help with customer support?',
       'How does automation work?',
       'Talk to Igor',
     ],
     limitMsg: 'You\'ve reached the message limit. To continue the conversation, reach me on Instagram @igor_works or by email igorlsdev30@gmail.com',
-    offTopic: 'I\'m focused on helping with our services. Ask about professional websites, automation, chatbots, dashboards, pricing or timelines!',
+    offTopic: 'I\'m focused on helping with our services. Ask about professional websites, automation, chatbots, dashboards, SaaS or apps!',
     warningLeft: '{n} messages remaining',
     contactLabel: 'Want me to send a message to Igor?',
     contactInstagram: 'Instagram DM',

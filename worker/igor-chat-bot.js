@@ -16,8 +16,17 @@ export default {
       return new Response('Method not allowed', { status: 405 })
     }
 
+    let isEn = false
     try {
-      const { message } = await request.json()
+      const { message, messages, lang } = await request.json()
+      const question = message ?? messages?.at(-1)?.content
+      isEn = lang === 'en'
+      if (typeof question !== 'string' || !question.trim() || question.length > 500) {
+        return Response.json(
+          { reply: isEn ? 'Please send a message of up to 500 characters.' : 'Envie uma mensagem de até 500 caracteres.' },
+          { status: 400, headers: { 'Access-Control-Allow-Origin': '*' } }
+        )
+      }
 
       // Topic filter
       const allowedTopics = [
@@ -37,14 +46,18 @@ export default {
         'enviar', 'mandar', 'falar', 'mensagem', 'contatar', 'chamar',
         'oi', 'olá', 'ola', 'hello', 'hi', 'bom dia', 'boa tarde', 'boa noite',
         'obrigado', 'obrigada', 'valeu', 'thanks', 'quero', 'gostei', 'interessado',
+        'saas', 'pwa', 'website', 'automation', 'report', 'platform', 'service',
+        'pricing', 'price', 'cost', 'quote', 'contact', 'schedule', 'how', 'help',
       ]
 
-      const normalized = message.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      const normalized = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       const isOnTopic = allowedTopics.some(t => normalized.includes(t.normalize('NFD').replace(/[\u0300-\u036f]/g, '')))
 
       if (!isOnTopic) {
         return Response.json(
-          { reply: 'Sou focado em ajudar com os serviços do Igor. Pergunte sobre sites, automação, chatbots, dashboards, preços ou prazos!' },
+          { reply: isEn
+            ? 'Ask me about professional websites, automation, chatbots, dashboards, SaaS platforms or apps.'
+            : 'Pergunte sobre sites profissionais, automação, chatbots, dashboards, plataformas SaaS ou aplicativos.' },
           { headers: { 'Access-Control-Allow-Origin': '*' } }
         )
       }
@@ -57,34 +70,17 @@ export default {
           'X-goog-api-key': env.GEMINI_API_KEY,
         },
         body: JSON.stringify({
-          contents: [{
+          systemInstruction: {
             parts: [{
-              text: `Você é o assistente de vendas do portfolio de Igor Luiz, desenvolvedor Full-Stack. Seu objetivo é CONVENCER o visitante a contratar os serviços.
+              text: `Você é o assistente do portfólio de Igor Luiz. Explique como os serviços se encaixam na rotina ou no projeto do visitante. Responda em ${isEn ? 'inglês' : 'português brasileiro'}.
 
-SERVIÇOS (sempre enfatize benefícios e resultados):
-1. SITES PROFISSIONAIS (a partir de R$ 800, 2-4 semanas)
-   - Landing Page: R$ 800 | Site Institucional: R$ 1.500 | Completo: R$ 2.500+
-   - Tecnologia: React, Tailwind, Framer Motion, SEO
-   - Benefícios: Credibilidade instantânea, clientes 24/7, aparece no Google, converte visitantes em clientes
-   - Resultado real: Restaurante teve +40% em reservas online no 1º mês
-   
-2. AUTOMAÇÃO (a partir de R$ 800, 1-2 semanas)
-   - Simples: R$ 800 | Média: R$ 1.500 | Complexa: R$ 2.500+
-   - Tecnologia: Python, APIs, webhooks, integrações
-   - Benefícios: Elimina trabalho manual, reduz erros a zero, economiza horas por dia
-   - Resultado real: Loja cortou 3h/dia de cadastro manual, erros zerados
-   
-3. CHATBOTS (a partir de R$ 800, 2-3 semanas)
-   - Básico: R$ 800 | Com IA: R$ 1.800 | Avançado: R$ 3.000+
-   - Tecnologia: IA, WhatsApp API, Instagram API, NLP
-   - Benefícios: Atendimento 24/7, respostas instantâneas, escala ilimitada, nunca perde cliente
-   - Resultado real: E-commerce aumentou conversão em 35%
-   
-4. DASHBOARDS (a partir de R$ 800, 2-3 semanas)
-   - Básico: R$ 800 | Intermediário: R$ 1.500 | Completo: R$ 2.500+
-   - Tecnologia: React, gráficos interativos, tempo real
-   - Benefícios: Visão clara do negócio, decisões baseadas em dados, controle total
-   - Resultado real: Startup identificou estoque parado e recuperou R$ 15k
+SERVIÇOS:
+- Sites profissionais: landing pages para receber contatos, sites institucionais para apresentar serviços e lojas virtuais com catálogo e checkout. Inclua exemplos de navegação no celular, SEO e desempenho conforme a necessidade.
+- Automação: conecte WhatsApp, planilhas, CRM e ERP para registrar pedidos, atualizar dados e avisar a equipe sem redigitação.
+- Chatbots: responda dúvidas frequentes, colete pedidos de agendamento e encaminhe conversas à equipe pelo WhatsApp, Instagram ou site.
+- Dashboards: reúna dados de vendas, estoque ou atendimento em gráficos com filtros, relatórios e alertas conforme as fontes disponíveis.
+- SaaS: desenvolva plataformas com contas, permissões, assinaturas e painel administrativo. Use BarberBLinders como exemplo de agendamento, assinaturas e gestão de equipe.
+- PWA: crie aplicativos web instaláveis em dispositivos compatíveis, com recursos offline e notificações quando houver suporte.
 
 TECNOLOGIAS (explique como cada uma transforma negócios):
 - React: Interfaces modernas e rápidas que impressionam clientes e convertem mais
@@ -104,17 +100,15 @@ CONTATO:
 PROJETOS:
 - TradingBot Enterprise: sistema de trading com IA, 109 testes, em produção
 
-PERGUNTA DO USUÁRIO: ${message}
-
 REGRAS DE RESPOSTA:
-- SEMPRE explique como o serviço/tecnologia pode IMPULSIONAR o negócio do cliente
-- Use exemplos reais de resultados (números concretos)
-- Seja persuasivo mas não agressivo
-- Respostas em até 6 frases curtas e diretas
-- Termine sempre convidando ação: "Quer isso pro seu negócio? Me chama no Instagram @igor_works ou email igorlsdev30@gmail.com"
-- Se fora do assunto, redirecione gentilmente para os serviços`
+- Nunca informe preços, faixas de preço, valores monetários, descontos ou estimativas de custo. Se pedirem orçamento, explique que Igor prepara uma proposta sob medida e pergunte qual serviço ou recurso o visitante precisa.
+- Use um exemplo prático relacionado à pergunta. Descreva resultados possíveis e evite inventar métricas ou garantias.
+- Responda em até seis frases curtas e termine com uma pergunta específica sobre o projeto.
+- Se o visitante quiser orçamento ou contato, ofereça Instagram ou e-mail.
+- Se o assunto fugir do portfólio, redirecione para os serviços.`
             }]
-          }],
+          },
+          contents: [{ role: 'user', parts: [{ text: question }] }],
           generationConfig: {
             maxOutputTokens: 2000,
             temperature: 0.7,
@@ -122,21 +116,21 @@ REGRAS DE RESPOSTA:
         }),
       })
 
+      if (!response.ok) throw new Error('Gemini request failed')
       const data = await response.json()
-      let reply = 'Desculpe, não consegui processar. Tente novamente ou me chama no Instagram @igor_works'
-      
-      if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-        reply = data.candidates[0].content.parts[0].text
+      const reply = data.candidates?.[0]?.content?.parts?.map(part => part.text ?? '').join('').trim()
+      if (!reply || /(?:[$€£]|\b(?:BRL|USD|EUR|reais|d[oó]lares|dollars)\b)/i.test(reply)) {
+        throw new Error('Gemini response unavailable')
       }
 
       return Response.json(
-        { reply },
+        { reply, message: reply },
         { headers: { 'Access-Control-Allow-Origin': '*' } }
       )
-    } catch (err) {
+    } catch {
       return Response.json(
-        { reply: 'Erro temporário. Tente novamente ou me chama no Instagram @igor_works' },
-        { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } }
+        { reply: isEn ? 'Please try again in a moment.' : 'Tente novamente em instantes.' },
+        { status: 502, headers: { 'Access-Control-Allow-Origin': '*' } }
       )
     }
   },

@@ -133,7 +133,7 @@ const pt = {
   // About
   sobre: {
     label: 'Sobre',
-    title: 'Quem é Igor',
+    title: 'Quem é o Igor?',
     p1: 'Desenvolvedor Full-Stack. Construo sistemas completos que vão do banco de dados ao deploy em produção. Projetos destaque: BarberBLinders — SaaS completo para barbearias, concluído e em produção; e TradingBot — bot de trading com IA adaptativa.',
     p2strong: 'BarberBLinders',
     p2: ' — plataforma SaaS pra barbearias com agendamento online, pagamentos via Stripe (cartão + Pix), chat em tempo real e PWA instalável no celular. Multi-tenant com 3 planos de assinatura, deploy em VPS própria. Projeto concluído e em produção.',
@@ -352,19 +352,19 @@ const pt = {
   chat: {
     headerName: 'Assistente dev-work',
     headerStatus: 'Online',
-    welcome: 'Olá! Sou o assistente da dev-work. Posso te ajudar com informações sobre nossos serviços, preços e prazos. O que você gostaria de saber?',
+    welcome: 'Olá! Sou o assistente da dev-work. Posso te ajudar a entender como nossos serviços se encaixam no seu projeto. O que você gostaria de saber?',
     placeholder: 'Digite sua pergunta...',
     limitReached: 'Limite atingido',
     inviteText: '👋 Precisa de ajuda? Clique aqui e tire suas dúvidas sobre nossos serviços!',
     inviteBtn: 'Conversar agora',
     quickQuestions: [
       'Quero um site profissional',
-      'Quanto custa um chatbot?',
+      'Como um chatbot ajuda no atendimento?',
       'Como funciona a automação?',
       'Falar com o Igor',
     ],
     limitMsg: 'Você atingiu o limite de mensagens. Para continuar a conversa, me chama no Instagram @igor_works ou pelo email igorlsdev30@gmail.com',
-    offTopic: 'Sou focado em ajudar com nossos serviços. Pergunte sobre sites profissionais, automação, chatbots, dashboards, preços ou prazos!',
+    offTopic: 'Sou focado em ajudar com nossos serviços. Pergunte sobre sites profissionais, automação, chatbots, dashboards, SaaS ou aplicativos!',
     warningLeft: 'Restam {n} mensagens',
     contactLabel: 'Quer que eu envie uma mensagem para o Igor?',
     contactInstagram: 'Instagram DM',

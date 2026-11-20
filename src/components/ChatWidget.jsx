@@ -53,12 +53,12 @@ function isOnTopic(input) {
 // Local fallback - respostas detalhadas
 const knowledge = {
   greeting: [
-    'Olá! Sou o assistente da dev-work. Posso te ajudar com informações sobre nossos serviços: sites profissionais, automação de processos, chatbots inteligentes e dashboards. O que você gostaria de saber?',
-    'Oi! Bem-vindo à dev-work. Trabalho com desenvolvimento de software sob medida. Pergunte sobre serviços, etapas do projeto ou como posso resolver o problema do seu negócio.',
+    'Olá! Sou o assistente da dev-works. Posso te ajudar com informações sobre nossos serviços: sites profissionais, automação de processos, chatbots inteligentes e dashboards. O que você gostaria de saber?',
+    'Oi! Bem-vindo à dev-works. Trabalho com desenvolvimento de software sob medida. Pergunte sobre serviços, etapas do projeto ou como posso resolver o problema do seu negócio.',
   ],
   greetingEn: [
-    'Hi! I\'m the dev-work assistant. I can help you with information about our services: professional websites, process automation, smart chatbots and dashboards. What would you like to know?',
-    'Hello! Welcome to dev-work. I work with custom software development. Ask about services and project timelines or how I can solve your business problem.',
+    'Hi! I\'m the dev-works assistant. I can help you with information about our services: professional websites, process automation, smart chatbots and dashboards. What would you like to know?',
+    'Hello! Welcome to dev-works. I work with custom software development. Ask about services and project timelines or how I can solve your business problem.',
   ],
   services: {
     'sites': {

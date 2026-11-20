@@ -45,7 +45,7 @@ export default function Hero() {
           animate="visible"
           custom={0.2}
         >
-          dev-work
+          dev-works
         </motion.h1>
 
         <motion.p

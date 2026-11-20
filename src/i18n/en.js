@@ -350,9 +350,9 @@ const en = {
 
   // ChatWidget UI
   chat: {
-    headerName: 'dev-work Assistant',
+    headerName: 'dev-works Assistant',
     headerStatus: 'Online',
-    welcome: 'Hi! I\'m the dev-work assistant. I can help you by explaining how our services can support your project. What would you like to know?',
+    welcome: 'Hi! I\'m the dev-works assistant. I can help you by explaining how our services can support your project. What would you like to know?',
     placeholder: 'Type your question...',
     limitReached: 'Limit reached',
     inviteText: '👋 Need help? Click here to ask about our services!',

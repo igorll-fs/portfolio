@@ -60,6 +60,7 @@ const en = {
     verProjeto: 'View Project',
     projetoPrivado: 'Private Project',
     verDetalhes: 'View Details',
+    acessarSite: 'Visit Website',
     items: [
       {
         title: 'TradingBot Enterprise',
@@ -72,6 +73,12 @@ const en = {
         description: 'Multi-tenant SaaS for barbershops — online scheduling, Stripe payments (card + Pix), team management, real-time chat, installable PWA. 3 subscription plans with trial. Completed, deployed to production and available for new clients.',
         features: ['24/7 scheduling with Google OAuth', 'Stripe payments (card + Pix)', 'Multi-tenant — 3 subscription plans', 'PWA — installs on mobile as an app', 'Real-time chat + notifications'],
         imageAlt: 'BarberBLinders — Scheduling and barbershop management panel',
+      },
+      {
+        title: 'Aluminato',
+        description: 'Website for Aluminato Esquadrias, featuring its aluminum and glass products and a gallery of completed projects.',
+        features: ['Product and solutions catalog', 'Project gallery with photos and videos', 'Responsive layout'],
+        imageAlt: 'Aluminato Esquadrias headquarters',
       },
     ],
   },

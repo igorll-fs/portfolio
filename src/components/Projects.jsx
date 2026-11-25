@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { GitFork, Lock } from 'lucide-react'
+import { ExternalLink, GitFork, Lock } from 'lucide-react'
 import { useLanguage } from '../i18n/context'
 
 const projectMeta = [
@@ -18,6 +18,12 @@ const projectMeta = [
     detailsLink: '/barberblinders.html',
     image: '/barberblinders-screenshot.jpg',
     reverse: true,
+  },
+  {
+    num: '03',
+    tech: ['React', 'Vite', 'Tailwind', 'Framer Motion'],
+    siteLink: 'https://aluminato.dev-works.uk',
+    image: '/aluminato.jpg',
   },
 ]
 
@@ -103,7 +109,11 @@ export default function Projects() {
                   {t.projetos.verDetalhes}
                 </a>
               )}
-              {p.link ? (
+              {p.siteLink ? (
+                <a href={p.siteLink} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
+                  <ExternalLink size={16} /> {t.projetos.acessarSite}
+                </a>
+              ) : p.link ? (
                 <a href={p.link} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
                   <GitFork size={16} /> {t.projetos.verProjeto}
                 </a>

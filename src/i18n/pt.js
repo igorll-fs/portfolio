@@ -60,6 +60,7 @@ const pt = {
     verProjeto: 'Ver Projeto',
     projetoPrivado: 'Projeto Privado',
     verDetalhes: 'Ver Detalhes',
+    acessarSite: 'Acessar Site',
     items: [
       {
         title: 'TradingBot Enterprise',
@@ -72,6 +73,12 @@ const pt = {
         description: 'SaaS multi-tenant para barbearias — agendamento online, pagamentos via Stripe (cartão + Pix), gestão de equipe, chat em tempo real, PWA instalável no celular. 3 planos de assinatura com trial. Projeto concluído, em produção e disponível para novos clientes.',
         features: ['Agendamento 24/7 com Google OAuth', 'Pagamentos Stripe (cartão + Pix)', 'Multi-tenant — 3 planos de assinatura', 'PWA — instala no celular como app', 'Chat em tempo real + notificações'],
         imageAlt: 'BarberBLinders — Painel de agendamento e gestão de barbearia',
+      },
+      {
+        title: 'Aluminato',
+        description: 'Site institucional para a Aluminato Esquadrias, com catálogo de soluções em alumínio e vidro e galeria de obras.',
+        features: ['Catálogo de produtos e soluções', 'Galeria de obras com fotos e vídeos', 'Layout responsivo'],
+        imageAlt: 'Fachada da Aluminato Esquadrias',
       },
     ],
   },

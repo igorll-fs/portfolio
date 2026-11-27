@@ -1,7 +1,9 @@
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, GitFork } from 'lucide-react'
 import { useLanguage } from '../i18n/context'
+
+const viewportOnce = { once: true, margin: '-80px' }
 
 const projectMeta = [
   {
@@ -22,7 +24,13 @@ const projectMeta = [
 
 export default function Projects() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const reduceMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+  // Parallax only on the featured showcase image layer (transform, no layout shift).
+  const showcaseY = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [28, -28])
   const { t } = useLanguage()
   const projects = projectMeta.map((meta) => ({ ...t.projetos.items[meta.id], ...meta }))
 
@@ -52,9 +60,10 @@ export default function Projects() {
         <div className="divider" style={{ marginBottom: 'clamp(3rem, 6vw, 5rem)' }} />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
+          transition={{ duration: reduceMotion ? 0 : 0.5 }}
         >
           <p className="section-label">{t.projetos.label}</p>
           <h2 className="section-title">{t.projetos.title}</h2>
@@ -66,13 +75,14 @@ export default function Projects() {
             key={project.id}
             className={`project${i === 0 ? ' project--featured' : ''}`}
             aria-labelledby={`project-${project.id}`}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15 + i * 0.15 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.15 + i * 0.15 }}
           >
-            <div className="project__image">
+            <motion.div className="project__image" style={{ y: i === 0 ? showcaseY : undefined }}>
               <img src={project.image} alt={project.imageAlt} loading="lazy" />
-            </div>
+            </motion.div>
 
             <div>
               <h3 id={`project-${project.id}`} className="project__title">{project.title}</h3>

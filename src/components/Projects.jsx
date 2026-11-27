@@ -1,29 +1,22 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ExternalLink, GitFork, Lock } from 'lucide-react'
+import { ArrowUpRight, GitFork } from 'lucide-react'
 import { useLanguage } from '../i18n/context'
 
 const projectMeta = [
   {
-    num: '01',
+    id: 'barberblinders',
+    tech: ['React', 'PocketBase', 'Stripe', 'Tailwind', 'PWA', 'Caddy', 'Cloudflare'],
+    siteLink: 'https://barberblinders.com',
+    detailsLink: '/barberblinders.html',
+    image: '/barberblinders-screenshot.jpg',
+  },
+  {
+    id: 'tradingBot',
     tech: ['Python', 'ccxt', 'Kraken API', 'Scikit-Learn', 'SQLite', 'Telegram Bot'],
     link: 'https://github.com/igorll-fs/trading-bot',
     detailsLink: '/bottrading.html',
     image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    num: '02',
-    tech: ['React', 'PocketBase', 'Stripe', 'Tailwind', 'PWA', 'Caddy', 'Cloudflare'],
-    link: null,
-    detailsLink: '/barberblinders.html',
-    image: '/barberblinders-screenshot.jpg',
-    reverse: true,
-  },
-  {
-    num: '03',
-    tech: ['React', 'Vite', 'Tailwind', 'Framer Motion'],
-    siteLink: 'https://aluminato.dev-works.uk',
-    image: '/aluminato.jpg',
   },
 ]
 
@@ -31,11 +24,7 @@ export default function Projects() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const { t } = useLanguage()
-
-  const projects = t.projetos.items.map((item, i) => ({
-    ...item,
-    ...projectMeta[i],
-  }))
+  const projects = projectMeta.map((meta) => ({ ...t.projetos.items[meta.id], ...meta }))
 
   return (
     <section id="projetos" className="section-pad bg-section" ref={ref}>
@@ -72,25 +61,25 @@ export default function Projects() {
           <p className="section-subtitle">{t.projetos.subtitle}</p>
         </motion.div>
 
-        {projects.map((p, i) => (
-          <motion.div
-            key={p.title}
-            className={`project ${p.reverse ? 'project--reverse' : ''}`}
+        {projects.map((project, i) => (
+          <motion.article
+            key={project.id}
+            className={`project${i === 0 ? ' project--featured' : ''}`}
+            aria-labelledby={`project-${project.id}`}
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 + i * 0.15 }}
           >
             <div className="project__image">
-              <img src={p.image} alt={p.imageAlt} loading="lazy" />
+              <img src={project.image} alt={project.imageAlt} loading="lazy" />
             </div>
 
             <div>
-              <p className="project__number">{p.num}</p>
-              <h3 className="project__title">{p.title}</h3>
-              <p className="project__desc">{p.description}</p>
+              <h3 id={`project-${project.id}`} className="project__title">{project.title}</h3>
+              <p className="project__desc">{project.description}</p>
 
               <ul className="project__features">
-                {p.features.map((f) => (
+                {project.features.map((f) => (
                   <li key={f} className="project__feature">
                     <span className="project__feature-dot" />
                     {f}
@@ -99,31 +88,22 @@ export default function Projects() {
               </ul>
 
               <div className="project__tags">
-                {p.tech.map((te) => (
+                {project.tech.map((te) => (
                   <span key={te} className="tag">{te}</span>
                 ))}
               </div>
 
-              {p.detailsLink && (
-                <a href={p.detailsLink} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
+              <div className="project__actions">
+                <a href={project.siteLink ?? project.link} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
+                  {project.siteLink ? <ArrowUpRight size={16} aria-hidden="true" /> : <GitFork size={16} aria-hidden="true" />}
+                  {project.siteLink ? t.projetos.acessarSite : t.projetos.verProjeto}
+                </a>
+                <a href={project.detailsLink} className="btn btn--ghost">
                   {t.projetos.verDetalhes}
                 </a>
-              )}
-              {p.siteLink ? (
-                <a href={p.siteLink} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-                  <ExternalLink size={16} /> {t.projetos.acessarSite}
-                </a>
-              ) : p.link ? (
-                <a href={p.link} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-                  <GitFork size={16} /> {t.projetos.verProjeto}
-                </a>
-              ) : (
-                <span className="btn btn--ghost" style={{ cursor: 'default', opacity: 0.6 }}>
-                  <Lock size={16} /> {t.projetos.projetoPrivado}
-                </span>
-              )}
+              </div>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
     </section>

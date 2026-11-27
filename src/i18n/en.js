@@ -58,29 +58,22 @@ const en = {
     title: 'Featured Work',
     subtitle: 'Real solutions, delivered and in production.',
     verProjeto: 'View Project',
-    projetoPrivado: 'Private Project',
     verDetalhes: 'View Details',
     acessarSite: 'Visit Website',
-    items: [
-      {
-        title: 'TradingBot Enterprise',
-        description: 'Autonomous trading bot with adaptive AI — scans the market 24/7, adjusts strategy based on volatility and trades via Kraken. Full pipeline: data collection → ML → decision → execution. In production with active paper trading.',
-        features: ['Adaptive AI — self-recalibrates', 'Multi-exchange (Kraken active)', '24/7 monitoring via Telegram', 'Paper trading + live mode', 'ML pipeline with feature engineering'],
-        imageAlt: 'Trading terminal with candlestick charts and indicators',
-      },
-      {
+    items: {
+      barberblinders: {
         title: 'BarberBLinders',
         description: 'Multi-tenant SaaS for barbershops — online scheduling, Stripe payments (card + Pix), team management, real-time chat, installable PWA. 3 subscription plans with trial. Completed, deployed to production and available for new clients.',
         features: ['24/7 scheduling with Google OAuth', 'Stripe payments (card + Pix)', 'Multi-tenant — 3 subscription plans', 'PWA — installs on mobile as an app', 'Real-time chat + notifications'],
         imageAlt: 'BarberBLinders — Scheduling and barbershop management panel',
       },
-      {
-        title: 'Aluminato',
-        description: 'Website for Aluminato Esquadrias, featuring its aluminum and glass products and a gallery of completed projects.',
-        features: ['Product and solutions catalog', 'Project gallery with photos and videos', 'Responsive layout'],
-        imageAlt: 'Aluminato Esquadrias headquarters',
+      tradingBot: {
+        title: 'TradingBot Enterprise',
+        description: 'Autonomous trading bot with adaptive AI — scans the market 24/7, adjusts strategy based on volatility and trades via Kraken. Full pipeline: data collection → ML → decision → execution. In production with active paper trading.',
+        features: ['Adaptive AI — self-recalibrates', 'Multi-exchange (Kraken active)', '24/7 monitoring via Telegram', 'Paper trading + live mode', 'ML pipeline with feature engineering'],
+        imageAlt: 'Trading terminal with candlestick charts and indicators',
       },
-    ],
+    },
   },
 
   // TechStack

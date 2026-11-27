@@ -58,29 +58,22 @@ const pt = {
     title: 'Trabalhos em destaque',
     subtitle: 'Soluções reais, entregues e em produção.',
     verProjeto: 'Ver Projeto',
-    projetoPrivado: 'Projeto Privado',
     verDetalhes: 'Ver Detalhes',
     acessarSite: 'Acessar Site',
-    items: [
-      {
-        title: 'TradingBot Enterprise',
-        description: 'Bot de trading autônomo com IA adaptativa — escaneia o mercado 24/7, ajusta estratégia sozinho conforme volatilidade e opera via Kraken. Pipeline completo: coleta de dados → ML → decisão → execução. Em produção com paper trading ativo.',
-        features: ['IA adaptativa — recalibra sozinha', 'Multi-exchange (Kraken ativo)', 'Monitoramento 24/7 via Telegram', 'Paper trading + live mode', 'Pipeline de ML com feature engineering'],
-        imageAlt: 'Terminal de trading com gráficos de candles e indicadores',
-      },
-      {
+    items: {
+      barberblinders: {
         title: 'BarberBLinders',
         description: 'SaaS multi-tenant para barbearias — agendamento online, pagamentos via Stripe (cartão + Pix), gestão de equipe, chat em tempo real, PWA instalável no celular. 3 planos de assinatura com trial. Projeto concluído, em produção e disponível para novos clientes.',
         features: ['Agendamento 24/7 com Google OAuth', 'Pagamentos Stripe (cartão + Pix)', 'Multi-tenant — 3 planos de assinatura', 'PWA — instala no celular como app', 'Chat em tempo real + notificações'],
         imageAlt: 'BarberBLinders — Painel de agendamento e gestão de barbearia',
       },
-      {
-        title: 'Aluminato',
-        description: 'Site institucional para a Aluminato Esquadrias, com catálogo de soluções em alumínio e vidro e galeria de obras.',
-        features: ['Catálogo de produtos e soluções', 'Galeria de obras com fotos e vídeos', 'Layout responsivo'],
-        imageAlt: 'Fachada da Aluminato Esquadrias',
+      tradingBot: {
+        title: 'TradingBot Enterprise',
+        description: 'Bot de trading autônomo com IA adaptativa — escaneia o mercado 24/7, ajusta estratégia sozinho conforme volatilidade e opera via Kraken. Pipeline completo: coleta de dados → ML → decisão → execução. Em produção com paper trading ativo.',
+        features: ['IA adaptativa — recalibra sozinha', 'Multi-exchange (Kraken ativo)', 'Monitoramento 24/7 via Telegram', 'Paper trading + live mode', 'Pipeline de ML com feature engineering'],
+        imageAlt: 'Terminal de trading com gráficos de candles e indicadores',
       },
-    ],
+    },
   },
 
   // TechStack

@@ -8,6 +8,7 @@ import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import MouseFollower from './components/MouseFollower'
+import ScrollProgress from './components/ScrollProgress'
 import Security from './components/Security'
 import ChatWidget from './components/ChatWidget'
 import { trackPageView } from './analytics'
@@ -38,6 +39,7 @@ export default function App() {
         <Security />
         <MouseFollower />
         <Navbar />
+        <ScrollProgress />
         <Hero />
         <Services />
         <Projects />
